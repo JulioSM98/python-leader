@@ -1,0 +1,12 @@
+version: "3.6"
+services:
+  pythonleader:
+    image: pythonleader:1.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: /bin/sh -c "while sleep 5; do python /app/app.py; done"
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - "node.role == manager"
